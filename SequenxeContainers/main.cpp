@@ -100,7 +100,7 @@ void main()
 	cout << endl;
 
 #endif // STL_LIST
-
+		
 #ifdef STL_FORWARD_LIST
 	std::forward_list<int> i_flist = { 3,5,8,13,21 };
 	for (std::forward_list<int>::iterator it = i_flist.begin(); it != i_flist.end(); ++it)
@@ -114,15 +114,17 @@ void main()
 	cout << "Введите индекс добавляемого элемента: "; cin >> index;
 	cout << "Введите значение добавляемого элемента: "; cin >> value;
 	std::forward_list<int>::iterator position = i_flist.begin();
-	//for (int i = 0; i < index-1; i++)position++;
+	for (int i = 0; i < index-1; i++)position++;
+	//std::advance(position, index);
 	/*if (index > 0 && index < std::distance(i_flist.begin(), i_flist.end()))
 	{
-		std::advance(position, index - 1);
 		i_flist.insert_after(position, value);
 		
 	}*/
-	//i_flist.remove(13);
-	i_flist.remove_if(less_then_10);
+	if (index > 0 && index < std::distance(i_flist.begin(), i_flist.end()))
+	{
+		i_flist.erase_after(position);
+	}
 	for (std::forward_list<int>::iterator it = i_flist.begin(); it != i_flist.end(); ++it)
 	{
 		cout << *it << tab;
