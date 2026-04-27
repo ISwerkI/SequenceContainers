@@ -1,6 +1,7 @@
 #include <iostream>
 #include<map>
 #include <set>
+#include <list>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -11,8 +12,8 @@ using std::endl;
 class MyInt;
 
 //#define STL_MAP_1
-#define STL_MAP_2
 //#define STL_SET
+#define STL_MAP_2
 class MyInt
 {
 	int value;
@@ -48,10 +49,16 @@ void main()
 		std::pair<int, std::string>(7, "Sunday"),
 	};
 	
-	for (std::multimap<int, std::string>::iterator it = weekdays.begin(); it != weekdays.end(); ++it)
+	/*for (std::multimap<int, std::string>::iterator it = weekdays.begin(); it != weekdays.end(); ++it)
 	{
 		cout << it->first << "\t" << it->second << endl;
+	}*/
+
+	for (std::pair<int, std::string> i : weekdays)
+	{
+		cout << i.first << "\t" << i.second << endl;
 	}
+	cout<<endl;
 
 
 #endif // STL_MAP
@@ -63,7 +70,11 @@ void main()
 		cout << *it << tab;
 	}
 	cout << endl;
-
+	for (int i : i_set)
+	{
+		cout << i << tab;
+	}
+	cout<<endl;
 	MyInt a = 5;
 	cout << a << endl;
 
@@ -73,12 +84,38 @@ void main()
 		cout << *it << tab;
 	}
 	cout << endl;
+	for (MyInt i : my_set)
+	{
+		cout << i << tab;
+	}
+	cout << endl;
 #endif // STL_SET
 
 #ifdef STL_MAP_2
 
-
-
+	std::map<std::string, std::list<std::string>> dictionary =
+	{
+		std::pair<std::string, std::list<std::string>>("statement", {"заявление", "утверждение", "формулировка"}),
+		{"space",{"космос","пространство", "пробел"}},
+		{"promise", {"обещание", "проекция", "перспектива"}},
+		{"accept",{"принимать","брать","опускать","соглашаться","признавать","соглашаться"}},
+		{"reverse",{"переворачивать","перевернутый","обратный"}}
+	};
+	for (std::map<std::string, std::list<std::string>>::iterator it = dictionary.begin(); it != dictionary.end(); ++it)
+	{
+		cout << it->first << "\t";
+		for (std::list<std::string>::iterator l_it = it->second.begin(); l_it != it->second.end(); ++l_it)
+			cout << *l_it << tab;
+		cout << endl;
+	}
+	cout << delimiter << endl;
+	for (std::pair<std::string, std::list<std::string>> i : dictionary)
+	{
+		cout << i.first << "\t";
+		for (std::list<std::string>::iterator l_it = i.second.begin(); l_it != i.second.end(); ++l_it)
+			cout << *l_it << tab;
+	}
+	cout << endl;
 #endif // STL_MAP_2
 
 	 
