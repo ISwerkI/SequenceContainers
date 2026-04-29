@@ -14,6 +14,7 @@ class MyInt;
 //#define STL_MAP_1
 //#define STL_SET
 #define STL_MAP_2
+//#define GAI
 class MyInt
 {
 	int value;
@@ -29,10 +30,22 @@ public:
 		return os << obj.value;
 	}
 };
+
+void append_offense(std::map<std::string, std::list<std::string>> offense_list, std::pair<std::string, std::string> offense_pair)
+{
+	for (std::pair<std::string, std::list<std::string>> i : offense_list)
+	{
+		if (offense_pair.first == i.first) 
+		{
+			i.second.push_back(offense_pair.second);
+			return;
+		}
+	}
+}
+
 void main()
 {
 	setlocale(LC_ALL, "");
-
 #ifdef STL_MAP_1
 	std::multimap<int, std::string> weekdays =
 	{
@@ -59,6 +72,7 @@ void main()
 		cout << i.first << "\t" << i.second << endl;
 	}
 	cout<<endl;
+
 
 
 #endif // STL_MAP
@@ -112,11 +126,27 @@ void main()
 	for (std::pair<std::string, std::list<std::string>> i : dictionary)
 	{
 		cout << i.first << "\t";
+		for (std::string j : i.second)
+		{
+			cout << j << ",";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#endif // STL_MAP_2
+
+#ifdef GAI
+	std::map<std::string, std::list<std::string>> offense_list;
+	std::pair<std::string, std::string> offense("H666EZ","Превышение скорости");
+	append_offense(offense_list, offense);
+	for (std::pair<std::string, std::list<std::string>> i : offense_list)
+	{
+		cout << i.first << "\t";
 		for (std::list<std::string>::iterator l_it = i.second.begin(); l_it != i.second.end(); ++l_it)
 			cout << *l_it << tab;
 	}
 	cout << endl;
-#endif // STL_MAP_2
+#endif // GAI
 
 	 
 }
