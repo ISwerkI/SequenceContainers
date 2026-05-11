@@ -99,7 +99,10 @@ std::ofstream& operator<<(std::ofstream& ofs, const Offence& obj)
 
 void Print(const std::map<std::string, std::list<Offence>>& base);
 void Save(const std::map<std::string, std::list<Offence>>& base, const std::string& filename);
+std::map<std::string, std::list<Offence>> Load(const std::string& filename);
+
 //#define OFFENCE_CHECK
+//#define PRINT_AND_SAVE_CHECK
 
 void main()
 {
@@ -113,6 +116,7 @@ void main()
 	cout << offence2 << endl;
 #endif // OFFENCE_CHECK
 
+#ifdef PRINT_AND_SAVE_CHECK
 	std::map<std::string, std::list<Offence>> base =
 	{
 		std::pair<std::string, std::list<Offence>>("a123bb", {Offence("ул. Ленина", "2023.04.29 12:31", 1), Offence("пер. Космический", "2016.11.16 17:30",2) }),
@@ -121,7 +125,11 @@ void main()
 	};
 
 	Print(base);
-	Save(base,"base.txt");
+	Save(base, "base.txt");
+
+#endif // PRINT_AND_SAVE_CHECK
+	std::map<std::string, std::list<Offence>> base = Load("base.txt");
+
 
 }
 
@@ -155,4 +163,25 @@ void Save(const std::map<std::string, std::list<Offence>>& base, const std::stri
 	std::string cmd = "notepad ";
 	cmd += filename;
 	system(cmd.c_str());
+}
+std::map<std::string, std::list<Offence>> Load(const std::string& filename)
+{
+	std::map<std::string, std::list<Offence>> base;
+	std::ifstream fin(filename);
+	if (fin.is_open())
+	{
+		std::string licese_plate;
+		std::string all_violations;
+		std::getline(fin, licese_plate, ':');
+		std::getline(fin, all_violations);
+		cout << licese_plate << endl;
+		cout << all_violations << endl;
+		cout << delimiter << endl;
+	}
+	else
+	{
+		std::cerr << "Error: File not found" << endl;
+	}
+	fin.close();
+	return base;
 }
