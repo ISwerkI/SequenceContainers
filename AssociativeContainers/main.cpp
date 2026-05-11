@@ -13,7 +13,7 @@ class MyInt;
 
 //#define STL_MAP_1
 //#define STL_SET
-#define STL_MAP_2
+//#define STL_MAP_2
 //#define GAI
 class MyInt
 {

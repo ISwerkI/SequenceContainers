@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SequenxeContainers", "Seque
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssociativeContainers", "AssociativeContainers\AssociativeContainers.vcxproj", "{C360A0A9-0EFF-4D9B-A0D8-ABFB6B0790C6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Police", "Police\Police.vcxproj", "{1536C8B7-FDF0-4C14-B2E7-846F8B433002}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{C360A0A9-0EFF-4D9B-A0D8-ABFB6B0790C6}.Release|x64.Build.0 = Release|x64
 		{C360A0A9-0EFF-4D9B-A0D8-ABFB6B0790C6}.Release|x86.ActiveCfg = Release|Win32
 		{C360A0A9-0EFF-4D9B-A0D8-ABFB6B0790C6}.Release|x86.Build.0 = Release|Win32
+		{1536C8B7-FDF0-4C14-B2E7-846F8B433002}.Debug|x64.ActiveCfg = Debug|x64
+		{1536C8B7-FDF0-4C14-B2E7-846F8B433002}.Debug|x64.Build.0 = Debug|x64
+		{1536C8B7-FDF0-4C14-B2E7-846F8B433002}.Debug|x86.ActiveCfg = Debug|Win32
+		{1536C8B7-FDF0-4C14-B2E7-846F8B433002}.Debug|x86.Build.0 = Debug|Win32
+		{1536C8B7-FDF0-4C14-B2E7-846F8B433002}.Release|x64.ActiveCfg = Release|x64
+		{1536C8B7-FDF0-4C14-B2E7-846F8B433002}.Release|x64.Build.0 = Release|x64
+		{1536C8B7-FDF0-4C14-B2E7-846F8B433002}.Release|x86.ActiveCfg = Release|Win32
+		{1536C8B7-FDF0-4C14-B2E7-846F8B433002}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
