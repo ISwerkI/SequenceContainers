@@ -116,6 +116,7 @@ std::map<std::string, std::list<Offence>> Load(const std::string& filename);
 
 //#define OFFENCE_CHECK
 //#define PRINT_AND_SAVE_CHECK
+#define LOAD_CHECK
 
 void main()
 {
@@ -130,6 +131,7 @@ void main()
 #endif // OFFENCE_CHECK
 
 #ifdef PRINT_AND_SAVE_CHECK
+
 	std::map<std::string, std::list<Offence>> base =
 	{
 		std::pair<std::string, std::list<Offence>>("a123bb", {Offence("ул. Ленина", "2023.04.29 12:31", 1), Offence("пер. Космический", "2016.11.16 17:30",2) }),
@@ -140,11 +142,14 @@ void main()
 	Print(base);
 	Save(base, "base.txt");
 
+
+
 #endif // PRINT_AND_SAVE_CHECK
+#ifdef LOAD_CHECK
 	std::map<std::string, std::list<Offence>> base = Load("base.txt");
 	cout << "\n======================================================\n";
 	Print(base);
-
+#endif // LOAD_CHECK
 }
 
 void Print(const std::map<std::string, std::list<Offence>>& base)
@@ -175,7 +180,7 @@ void Save(const std::map<std::string, std::list<Offence>>& base, const std::stri
 	}
 	fout.close();
 	std::string cmd = "notepad ";
-	cmd += filename;
+	cmd += filename; 
 	system(cmd.c_str());
 }
 std::map<std::string, std::list<Offence>> Load(const std::string& filename)
@@ -187,15 +192,18 @@ std::map<std::string, std::list<Offence>> Load(const std::string& filename)
 
 		while (!fin.eof())
 		{
-			std::string licese_plate;
+			//std::string licese_plate;
 			char all_violations[1024]{};
-			std::getline(fin, licese_plate, ':');
-			fin.getline(all_violations, 1024);
-			if (licese_plate.size() < 1)continue;
-			cout << licese_plate << endl;
-			cout << all_violations << endl;
-			char delimiters[] = ",;";
-			for (char* pch = strtok(all_violations, delimiters); pch; pch = strtok(NULL, delimiters))
+			//std::getline(fin, licese_plate, ':');
+			fin.getline(all_violations, 1024, ';');
+			if (strlen(all_violations) < 1)continue;
+			//cout << licese_plate << endl;
+			//cout << all_violations << endl;
+			//for (int i = 0; i < 1024; i++)				if (all_violations[i] == '\n')					for (int j = i; j < 1024; j++)all_violations[j] = all_violations[j + 1];
+			char delimiters[] = ":,;\n";
+			char* pch = strtok(all_violations, delimiters);
+			std::string licese_plate = pch;
+			for (pch = strtok(NULL, delimiters); pch; pch = strtok(NULL, delimiters))
 			{
 				std::stringstream s_stream;
 				Offence violation;
